@@ -1,0 +1,335 @@
+﻿@model List<WebUI.Models.Shared.FormData>
+
+@Html.Partial("_breadcrumb")
+@if (Model.Count() <= 0)
+{
+    @Html.Partial("_nodatafound")
+}
+else
+{
+    <div class="row mb-1">
+        @if (ViewBag.CourseList.IsSubmit)
+        {
+            <div class="col-auto ms-auto">
+                @Html.ActionLink("Download Attendance Statement", "atstatement", "print", new { subid = ViewBag.CourseList.SubId }, new { @class = "btn btn-sm btn-warning", target = "_blank" })
+            </div>
+            <div class="col-auto">
+                @Html.ActionLink("Download Packing Slip", "atpackingslip", "print", new { subid = ViewBag.CourseList.SubId }, new { @class = "btn btn-sm btn-warning", target = "_blank" })
+            </div>
+        }
+        @if (ViewBag.CourseList.CanEdit && !ViewBag.CourseList.IsSubmit)
+        {
+            <div class="col-auto">
+                <button class="btn btn-sm btn-warning btn-add-buffer" data-subid="@ViewBag.CourseList.SubId">Add Buffer</button>
+            </div>
+        }
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="table table-sm table-responsive text-center text-secondary small">
+                <thead class="table-light">
+                    <tr>
+                        <th>#</th>
+                        <th>Hall Ticket Number</th>
+                        <th class="text-start">Name</th>
+                        <th>Sticker Number</th>
+                        <th>IsBuffer</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int i = 0;
+                        foreach (var item in Model)
+                        {
+                            i++;
+                            <tr class="at-status" data-item='@Html.Raw(Json.Encode(item))'>
+                                <th scope="row">@i</th>
+                                <td>@item.IHTNO</td>
+                                <td class="text-start">@item.SName</td>
+                                <td>@item.StickerNo</td>
+                                <td>
+                                    @(item.IsBuffer?"Yes": "No")
+                                </td>
+                                @if (ViewBag.CourseList.CanEdit && !ViewBag.CourseList.IsSubmit)
+                                {
+                                    <td class="text-center">
+                                        <select class="form-select form-select-sm w-auto mx-auto" aria-label="select status">
+                                            <option value="P">Present</option>
+                                            <option value="A">Absent</option>
+                                            <option value="MP">Malpractice</option>
+                                        </select>
+                                    </td>
+                                    <td class="text-center">
+                                        @if (item.IsBuffer)
+                                        {
+                                            <button class="btn btn-sm btn-danger btn-delete-buffer">Delete Buffer</button>
+                                        }
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td class="text-center">
+                                        <span class="at-text"></span>
+                                    </td>
+                                    <td></td>
+                                }
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row mb-1">
+        @if (ViewBag.CourseList.CanEdit && !ViewBag.CourseList.IsSubmit)
+        {
+            <div class="col">
+                <button class="btn btn-sm btn-success btn-submit" data-subid="@ViewBag.CourseList.SubId">Submit Attendance</button>
+            </div>
+        }
+        @if (ViewBag.CourseList.CanEdit && ViewBag.CourseList.IsSubmit && !ViewBag.CourseList.IsReset)
+        {
+            <div class="col-auto ms-auto">
+                <button class="btn btn-sm btn-danger btn-reset" data-subid="@ViewBag.CourseList.SubId">Reset Attendance</button>
+            </div>
+        }
+    </div>
+
+
+}
+@section scripts {
+    <script type="text/javascript">
+        const trStyle = { P: 'table-success', A: 'table-danger', MP: 'table-warning' }
+        const atText = { P: 'Present', A: 'Absent', MP: 'Malpractice' }
+
+        $(document).ready(function () {
+            $('.at-status').each(function () {
+                var tr = $(this);
+                var item = tr.data('item');
+
+                item.AtStatus ??= 'P';
+                tr.data('item', item);
+
+                tr.find('select').val(item.AtStatus);
+                tr.find('span.at-text').text(atText[item.AtStatus]);
+                tr.removeClass().addClass(trStyle[item.AtStatus]);
+            });
+
+
+            $('select').change(function () {
+                var el = $(this);
+                var tr = el.closest('tr');
+                var item = tr.data('item');
+                var newstatus = el.val();
+                var oldstatus = item.AtStatus;
+
+                fetchWrapper.post('../atedit/updateatstatus', { id: item.Id, atstatus: newstatus })
+                    .then(result => {
+                        if (!result.OK)
+                            throw Error('Something went wrong.');
+                        item.AtStatus = newstatus;
+                        tr.data('item', item);
+                        tr.removeClass().addClass(trStyle[item.AtStatus]);
+                    })
+                    .catch(error => {
+                        el.val(oldstatus);
+                        modbox.error({ title: 'Error', body: error });
+                    });
+            });
+
+            $('.btn-submit').click(function () {
+                var el = $(this);
+                let p = 0, a = 0, mp = 0, b = 0, t = 0;
+                $('select').each(function () {
+                    var select = $(this);
+                    var status = select.val();
+                    t++;
+                    switch (status) {
+                        case 'P': p++; break;
+                        case 'A': a++; break;
+                        case 'MP': mp++; break;
+                    }
+
+                    var item = select.closest('tr').data('item')
+                    if (item.IsBuffer)
+                        b++;
+                });
+
+                let confirmBody = `<div><table class='table table-sm table-bordered table-striped table-responsive text-center'><tr><td class='w-50'>Present</td><td class='w-50'>${p}</td></tr><tr><td>Absent</td><td>${a}</td></tr><tr><td>Malpractice</td><td>${mp}</td></tr><tr><td>Buffer</td><td>${b}</td></tr><tr><td>Total</td><td>${t}</td></tr></table><p>Are you confirm to submit?</p></div>`;
+
+                modbox.confirm({
+                    title: 'Submit Attendance',
+                    body: confirmBody,
+                    backdrop: 'static',
+                    center: true,
+                    okButton: { label: 'Yes', size: 'sm' },
+                    closeButton: { label: 'No', size: 'sm' }
+                }).then(() => {
+                    fetchWrapper.post('../atedit/submitatstatus', { subid: el.data('subid') })
+                        .then((result) => {
+                            if (result.OK) {
+                                modbox.success({ title: 'Submit Attendance', body: 'Submit successfully.' })
+                                    .then(() => window.location.reload());
+                            }
+                            else
+                                modbox.error({ title: 'Error', body: 'Something went wrong!' });
+                        })
+                        .catch((error) => {
+                            modbox.error({ title: 'Error', body: error });
+                        });
+                }).catch((error) => {
+                    console.log(error)
+                })
+            });
+
+            $('.btn-reset').click(function () {
+                var el = $(this);
+                modbox.confirm({
+                    title: 'Reset Attendance',
+                    body: 'Are you confirm to reset?',
+                    backdrop: 'static',
+                    center: true,
+                    okButton: { label: 'Yes', size: 'sm' },
+                    closeButton: { label: 'No', size: 'sm' }
+                }).then(() => {
+                    fetchWrapper.post('../atedit/resetsubmitatstatus', { subid: el.data('subid') })
+                        .then(result => {
+                            if (result.OK) {
+                                modbox.success({ title: 'Reset Attendance', body: 'Reset successfully.' })
+                                    .then(() => window.location.reload());
+                            }
+                            else
+                                modbox.error({ title: 'Error', body: 'Something went wrong!' });
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                            modbox.error({ title: 'Error', body: error });
+                        });
+                }).catch((error) => console.log(error))
+            });
+
+            $('.btn-delete-buffer').click(function () {
+                var el = $(this);
+                var tr = el.closest('tr');
+                var item = tr.data('item');
+                modbox.confirm({
+                    title: 'Delete Buffer',
+                    body: `<p>Hall Ticket Number: ${item.IHTNO} <p>Are you confirm to delete?`,
+                    backdrop: 'static',
+                    center: true,
+                    okButton: { label: 'Yes', size: 'sm' },
+                    closeButton: { label: 'No', size: 'sm' }
+                }).then(() => {
+                    fetchWrapper.post('../atedit/deletebuffer', { id: item.Id })
+                        .then(result => {
+                            if (result.OK) {
+                                modbox.success({ title: 'Delete Buffer', body: 'Deleted successfully.' })
+                                    .then(() => window.location.reload());
+                            }
+                            else
+                                modbox.error({ title: 'Error', body: 'Something went wrong!' });
+                        })
+                        .catch(error => modbox.error({ title: 'Error', body: error }));
+                }).catch((error) => console.log(error))
+            });
+
+            $('.btn-add-buffer').click(function () {
+                var el = $(this);
+                const addBuffer = new modbox({
+                    title: 'Add Buffer',
+                    body: '<div class="form-floating mb-0"><input type="text" class="form-control text-uppercase" id="txtHallTicketNumber" placeholder="Hall Ticket Number" autocomplete="off"><label for="txtHallTicketNumber">Hall Ticket Number</label></div>' +
+                        '<div class="form-floating d-none mt-2 mb-0"><input type="text" class="form-control text-uppercase" id="txtStudentName" placeholder="Student Name" autocomplete="off"><label for="txtStudentName">Student Name</label></div>' +
+                        '<div class="form-floating d-none mt-2 mb-0"><select class= "form-select" id="txtMedium"><option value="1" selected>English</option><option value="2">Telugu</option><option value="3">Urdu</option><option value="5">Hindi</option></select ><label for="txtMedium">Medium</label></div >',
+                    destroyOnClose: true,
+                    backdrop: 'static',
+                    center: true,
+                    buttons: [
+                        {
+                            id: 'btnNext',
+                            label: 'Next',
+                            close: false,
+                            style: 'primary',
+                            callback: (event, modal) => {
+                                let txtHallTicketNumber = addBuffer.modalEl.querySelector('#txtHallTicketNumber');
+                                let txtStudentName = addBuffer.modalEl.querySelector('#txtStudentName');
+                                let txtMedium = addBuffer.modalEl.querySelector('#txtMedium');
+                                let btnSave = addBuffer.modalEl.querySelector('#btnSave');
+                                let btnNext = addBuffer.modalEl.querySelector('#btnNext');
+                                fetchWrapper.post('../atedit/validatebuffer', { subid: el.data('subid'), htno: txtHallTicketNumber.value })
+                                    .then(result => {
+                                        if (result.OK) {
+                                            txtHallTicketNumber.readOnly = true;
+                                            txtStudentName.closest('div').classList.remove('d-none')
+                                            txtMedium.closest('div').classList.remove('d-none')
+                                            btnNext.classList.add('d-none')
+                                            btnSave.classList.remove('d-none')
+                                            if (result.SName) {
+                                                txtStudentName.value = result.SName;
+                                                txtStudentName.readOnly = true;
+                                                btnSave.focus();
+                                            }
+                                            else
+                                                txtStudentName.focus();
+                                        }
+                                        else {
+                                            modbox.error({ title: 'Error', body: result.Error })
+                                        }
+
+                                    })
+                                    .catch((error) => {
+                                        console.log(error)
+                                        modbox.error({ title: 'Error', body: error });
+                                    });
+                            }
+                        },
+                        {
+                            id: 'btnSave',
+                            label: 'Save',
+                            close: false,
+                            style: 'primary d-none',
+                            callback: (event, modal) => {
+                                let txtHallTicketNumber = addBuffer.modalEl.querySelector('#txtHallTicketNumber');
+                                let txtStudentName = addBuffer.modalEl.querySelector('#txtStudentName');
+                                let txtMedium = addBuffer.modalEl.querySelector('#txtMedium');
+                                var regex = /^[a-zA-Z .]{2,30}$/;
+                                if (regex.test(txtStudentName.value)) {
+                                    fetchWrapper.post('../atedit/addbuffer', { subid: el.data('subid'), htno: txtHallTicketNumber.value, sname: txtStudentName.value, medium: txtMedium.options[txtMedium.selectedIndex].text })
+                                        .then(result => {
+                                            if (result.OK) {
+                                                modal.hide();
+                                                modbox.success({ title: 'Add Buffer', body: 'Buffer added successfully.' })
+                                                    .then(() => window.location.reload());
+                                            }
+                                            else
+                                                modbox.error({ title: 'Error', body: result.Error });
+
+                                        })
+                                        .catch((error) => {
+                                            console.log(error)
+                                            modbox.error({ title: 'Error', body: error });
+                                        });
+                                }
+                                else {
+                                    modbox.error({ title: 'Error', body: 'Student name is invalid.' })
+                                        .then(() => txtStudentName.focus());
+                                }
+                            }
+                        }
+                    ],
+                    events: {
+                        shown: (event, modal) => {
+                            addBuffer.modalEl.querySelector('#txtHallTicketNumber').focus();
+                        }
+                    }
+
+                });
+                addBuffer.show();
+            });
+        });
+
+    </script>
+}
+
+

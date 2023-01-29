@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report DataSourceName="ds_at_sticker" Width="8.117in" Name="BU_sticker" SnapGridSize="1pt" xmlns="http://schemas.telerik.com/reporting/2019/2.0">
+  <DataSources>
+    <SqlDataSource QueryDesignerState="null" ParameterValues="{&quot;@eid&quot;:&quot;1&quot;,&quot;@examcentrecode&quot;:&quot;001&quot;,&quot;@examdate&quot;:&quot;12-08-2022&quot;,&quot;@examtime&quot;:&quot;2 PM TO 4 PM&quot;,&quot;@islatecomer&quot;:&quot;False&quot;,&quot;@isbuffer&quot;:&quot;False&quot;}" ConnectionString="BRAOUWeb" SelectCommand="at.FormData_Sticker" SelectCommandType="StoredProcedure" Name="ds_at_sticker">
+      <Parameters>
+        <SqlDataSourceParameter DbType="Int32" Name="@eid">
+          <Value>
+            <String>= Parameters.EId.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+        <SqlDataSourceParameter DbType="AnsiString" Name="@examcentrecode">
+          <Value>
+            <String>= Parameters.ExamCentreCode.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+        <SqlDataSourceParameter DbType="AnsiString" Name="@examdate">
+          <Value>
+            <String>= Parameters.ExamDate.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+        <SqlDataSourceParameter DbType="AnsiString" Name="@examtime">
+          <Value>
+            <String>= Parameters.ExamTime.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+        <SqlDataSourceParameter DbType="Boolean" Name="@islatecomer">
+          <Value>
+            <String>= Parameters.IsLateComer.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+        <SqlDataSourceParameter DbType="Boolean" Name="@isbuffer">
+          <Value>
+            <String>= Parameters.IsBuffer.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+      </Parameters>
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <PageHeaderSection Height="0.2in" Name="pageHeaderSection1" />
+    <DetailSection Height="3.7in" Name="detailSection1">
+      <Style>
+        <BorderStyle Default="None" />
+        <BorderColor Default="ActiveBorder" />
+      </Style>
+      <Items>
+        <Panel Width="2.7in" Height="3.7in" Left="0in" Top="0in" Name="panel4" StyleName="">
+          <Style>
+            <BorderStyle Default="Dashed" />
+            <BorderColor Default="DarkGray" />
+          </Style>
+          <Items>
+            <TextBox Width="2.2in" Height="0.208in" Left="0.069in" Top="1.506in" Value="= Fields.IHTNO1" CanGrow="False" Name="textBox25">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <Barcode Width="0.9in" Height="0.9in" Left="0.069in" Top="0.023in" Value="= Fields.Barcode1" Stretch="True" Name="barcode7">
+              <Style TextAlign="Center" VerticalAlign="Middle" />
+              <Encoder>
+                <QRCodeEncoder />
+              </Encoder>
+              <Bindings>
+                <Binding Path="Visible" Expression="= IIf(Len(Fields.barcode1)=0, false, true)" />
+              </Bindings>
+            </Barcode>
+            <Barcode Width="0.9in" Height="0.9in" Left="1.736in" Top="0.023in" Value="= Fields.Barcode1" Stretch="True" Name="barcode8">
+              <Style TextAlign="Center" VerticalAlign="Middle" />
+              <Encoder>
+                <QRCodeEncoder />
+              </Encoder>
+              <Bindings>
+                <Binding Path="Visible" Expression="= IIf(Len(Fields.barcode1)=0, false, true)" />
+              </Bindings>
+            </Barcode>
+            <TextBox Width="2.2in" Height="0.208in" Left="0.069in" Top="0.927in" Value="= Fields.StickerNo1" CanGrow="False" Name="textBox26">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.2in" Height="0.208in" Left="0.069in" Top="1.744in" Value="= Fields.ExamDate1" CanGrow="False" Name="textBox27">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.567in" Height="0.486in" Left="0.069in" Top="1.953in" Value="= Fields.ExamCentreCode1 + &quot;: &quot; + Fields.ExamCentreName1" CanGrow="False" Name="textBox28">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.567in" Height="0.348in" Left="0.069in" Top="2.925in" Value="= Fields.PaperCode1 + &quot;: &quot; + Fields.PaperName1" CanGrow="False" Name="textBox29">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" Bold="False" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.2in" Height="0.208in" Left="0.069in" Top="2.439in" Value="= Fields.Medium1" CanGrow="False" Name="textBox30">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.567in" Height="0.25in" Left="0.069in" Top="3.272in" Value="= Fields.ExamCentreCode1 + &quot;/&quot; + Fields.ExamDate1 +&quot;/&quot; + Fields.PrintSeq1" CanGrow="False" Name="textBox31">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.567in" Height="0.37in" Left="0.069in" Top="1.136in" Value="= Fields.SName1" CanGrow="False" Name="textBox32">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" Bold="False" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.567in" Height="0.278in" Left="0.069in" Top="2.647in" Value="= Fields.Subject1" CanGrow="False" Name="textBox1">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" />
+              </Style>
+            </TextBox>
+          </Items>
+        </Panel>
+        <Panel Width="2.7in" Height="3.7in" Left="2.7in" Top="0in" Name="panel5" StyleName="">
+          <Style>
+            <BorderStyle Default="Dashed" />
+            <BorderColor Default="DarkGray" />
+          </Style>
+          <Items>
+            <TextBox Width="2.2in" Height="0.208in" Left="0.078in" Top="1.506in" Value="= Fields.IHTNO2" CanGrow="False" Name="textBox33">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <Barcode Width="0.9in" Height="0.9in" Left="0.078in" Top="0.023in" Value="= Fields.Barcode2" Stretch="True" Name="barcode9">
+              <Style TextAlign="Center" VerticalAlign="Middle" />
+              <Encoder>
+                <QRCodeEncoder />
+              </Encoder>
+              <Bindings>
+                <Binding Path="Visible" Expression="= IIf(Len(Fields.barcode2)=0, false, true)" />
+              </Bindings>
+            </Barcode>
+            <Barcode Width="0.9in" Height="0.9in" Left="1.744in" Top="0.023in" Value="= Fields.Barcode2" Stretch="True" Name="barcode10">
+              <Style TextAlign="Center" VerticalAlign="Middle" />
+              <Encoder>
+                <QRCodeEncoder />
+              </Encoder>
+              <Bindings>
+                <Binding Path="Visible" Expression="= IIf(Len(Fields.barcode2)=0, false, true)" />
+              </Bindings>
+            </Barcode>
+            <TextBox Width="2.2in" Height="0.208in" Left="0.078in" Top="0.927in" Value="= Fields.StickerNo2" CanGrow="False" Name="textBox34">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.2in" Height="0.208in" Left="0.078in" Top="1.744in" Value="= Fields.ExamDate2" CanGrow="False" Name="textBox35">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.567in" Height="0.486in" Left="0.078in" Top="1.953in" Value="= Fields.ExamCentreCode2 + &quot;: &quot; + Fields.ExamCentreName2" CanGrow="False" Name="textBox36">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.567in" Height="0.348in" Left="0.078in" Top="2.925in" Value="= Fields.PaperCode2 + &quot;: &quot; + Fields.PaperName2" CanGrow="False" Name="textBox37">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" Bold="False" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.2in" Height="0.208in" Left="0.078in" Top="2.439in" Value="= Fields.Medium2" CanGrow="False" Name="textBox38">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.584in" Height="0.25in" Left="0.06in" Top="3.272in" Value="= Fields.ExamCentreCode2 + &quot;/&quot; + Fields.ExamDate2 +&quot;/&quot; + Fields.PrintSeq2" CanGrow="False" Name="textBox39">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.567in" Height="0.37in" Left="0.078in" Top="1.136in" Value="= Fields.SName2" CanGrow="False" Name="textBox40">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" Bold="False" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.567in" Height="0.278in" Left="0.06in" Top="2.647in" Value="= Fields.Subject2" CanGrow="False" Name="textBox2">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" />
+              </Style>
+            </TextBox>
+          </Items>
+        </Panel>
+        <Panel Width="2.7in" Height="3.7in" Left="5.4in" Top="0in" Name="panel6" StyleName="">
+          <Style>
+            <BorderStyle Default="Dashed" />
+            <BorderColor Default="DarkGray" />
+          </Style>
+          <Items>
+            <TextBox Width="2.146in" Height="0.208in" Left="0.086in" Top="1.506in" Value="= Fields.IHTNO3" CanGrow="False" Name="textBox41">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <Barcode Width="0.9in" Height="0.9in" Left="0.086in" Top="0.023in" Value="= Fields.Barcode3" Stretch="True" Name="barcode11">
+              <Style TextAlign="Center" VerticalAlign="Middle" />
+              <Encoder>
+                <QRCodeEncoder />
+              </Encoder>
+              <Bindings>
+                <Binding Path="Visible" Expression="= IIf(Len(Fields.barcode3)=0, false, true)" />
+              </Bindings>
+            </Barcode>
+            <Barcode Width="0.9in" Height="0.9in" Left="1.753in" Top="0.023in" Value="= Fields.Barcode3" Stretch="True" Name="barcode12">
+              <Style TextAlign="Center" VerticalAlign="Middle" />
+              <Encoder>
+                <QRCodeEncoder />
+              </Encoder>
+              <Bindings>
+                <Binding Path="Visible" Expression="= IIf(Len(Fields.barcode3)=0, false, true)" />
+              </Bindings>
+            </Barcode>
+            <TextBox Width="2.146in" Height="0.208in" Left="0.086in" Top="0.927in" Value="= Fields.StickerNo3" CanGrow="False" Name="textBox42">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.146in" Height="0.208in" Left="0.086in" Top="1.744in" Value="= Fields.ExamDate3" CanGrow="False" Name="textBox43">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.567in" Height="0.486in" Left="0.086in" Top="1.953in" Value="= Fields.ExamCentreCode3 + &quot;: &quot; + Fields.ExamCentreName3" CanGrow="False" Name="textBox44">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.567in" Height="0.348in" Left="0.086in" Top="2.925in" Value="= Fields.PaperCode3 + &quot;: &quot; + Fields.PaperName3" CanGrow="False" Name="textBox45">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" Bold="False" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.146in" Height="0.208in" Left="0.086in" Top="2.439in" Value="= Fields.Medium3" CanGrow="False" Name="textBox46">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.567in" Height="0.25in" Left="0.086in" Top="3.272in" Value="= Fields.ExamCentreCode3 + &quot;/&quot; + Fields.ExamDate3 +&quot;/&quot; + Fields.PrintSeq3" CanGrow="False" Name="textBox47">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.567in" Height="0.37in" Left="0.086in" Top="1.136in" Value="= Fields.SName3" CanGrow="False" Name="textBox48">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" Bold="False" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.567in" Height="0.278in" Left="0.086in" Top="2.647in" Value="= Fields.Subject3" CanGrow="False" Name="textBox3">
+              <Style VerticalAlign="Middle">
+                <Font Name="Verdana" Size="9pt" />
+              </Style>
+            </TextBox>
+          </Items>
+        </Panel>
+      </Items>
+    </DetailSection>
+    <PageFooterSection Height="0.052in" Name="pageFooterSection1" />
+  </Items>
+  <PageSettings PaperKind="A4" Landscape="False" ColumnCount="1" ColumnSpacing="0.05in" ContinuousPaper="False">
+    <Margins>
+      <MarginsU Left="0.05in" Right="0.05in" Top="0.05in" Bottom="0.05in" />
+    </Margins>
+  </PageSettings>
+  <StyleSheet>
+    <StyleRule>
+      <Style>
+        <Padding Left="2pt" Right="2pt" />
+      </Style>
+      <Selectors>
+        <TypeSelector Type="HtmlTextBox" />
+        <TypeSelector Type="TextItemBase" />
+      </Selectors>
+    </StyleRule>
+  </StyleSheet>
+  <Sortings>
+    <Sorting Expression="= Fields.StartTime1" Direction="Asc" />
+    <Sorting Expression="= Fields.PrintSeq1" Direction="Asc" />
+  </Sortings>
+  <Groups>
+    <Group Name="group1">
+      <GroupHeader>
+        <GroupHeaderSection Height="0in" Name="groupHeaderSection" />
+      </GroupHeader>
+      <GroupFooter>
+        <GroupFooterSection PageBreak="Before" Height="0in" Name="groupFooterSection" />
+      </GroupFooter>
+      <Groupings>
+        <Grouping Expression="= Fields.StartTime1" />
+      </Groupings>
+    </Group>
+  </Groups>
+  <ReportParameters>
+    <ReportParameter Name="EId" Type="Integer" />
+    <ReportParameter Name="ExamCentreCode" />
+    <ReportParameter Name="ExamDate" />
+    <ReportParameter Name="ExamTime" />
+    <ReportParameter Name="IsLateComer" Type="Boolean" />
+    <ReportParameter Name="IsBuffer" Type="Boolean" />
+  </ReportParameters>
+</Report>

@@ -1,0 +1,59 @@
+﻿@model List<WebUI.Models.At.ExamcentreCount>
+
+@Html.Partial("_breadcrumb")
+@if (Model.Count() <= 0)
+{
+    @Html.Partial("_nodatafound")
+}
+else
+{
+    <div class="row">
+        <div class="col">
+            <table class="table table-sm table-responsive text-center text-secondary small">
+                <thead class="table-light">
+                    <tr>
+                        <th>#</th>
+                        <th>Examcentre Code</th>
+                        <th class="text-start">Examcentre Name</th>
+                        <th>Total</th>
+                        <th>Present</th>
+                        <th>Absent</th>
+                        <th>Malpractice</th>
+                        <th>Buffer</th>
+                        <th>Pending</th>
+                        <th>IO Pending</th>
+                        <th>Scan Pending</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int i = 0;
+                        foreach (var item in Model)
+                        {
+                            i++;
+                                        <tr class="at-row">
+                                            <th scope="row">@i</th>
+                                            <td>@item.ExamCentreCode</td>
+                                            <td class="text-start">@item.ExamCentreName</td>
+                                            <td>@Html.ActionLink(item.Total.ToString(), "formdataquery", "adboard", new { screen = "examcentrecount", query =  "T", esub = ViewBag.esub, eccode = item.ExamCentreCode }, new { @class = "at-total" })</td>
+                                            <td>@Html.ActionLink(item.Present.ToString(), "formdataquery", "adboard", new { screen = "examcentrecount", query =  "P", esub = ViewBag.esub, eccode = item.ExamCentreCode }, new { @class = "at-present" })</td>
+                                            <td>@Html.ActionLink(item.Absent.ToString(), "formdataquery", "adboard", new { screen = "examcentrecount", query =  "A", esub = ViewBag.esub, eccode = item.ExamCentreCode }, new { @class = "at-absent" })</td>
+                                            <td>@Html.ActionLink(item.Malpractice.ToString(), "formdataquery", "adboard", new { screen = "examcentrecount", query =  "MP", esub = ViewBag.esub, eccode = item.ExamCentreCode }, new { @class = "at-malpractice" })</td>
+                                            <td>@Html.ActionLink(item.Buffer.ToString(), "formdataquery", "adboard", new { screen = "examcentrecount", query =  "B", esub = ViewBag.esub, eccode = item.ExamCentreCode }, new { @class = "at-buffer" })</td>
+                                            <td>@Html.ActionLink(item.Pending.ToString(), "formdataquery", "adboard", new { screen = "examcentrecount", query =  "ATPENDING", esub = ViewBag.esub, eccode = item.ExamCentreCode }, new { @class = "at-pending" })</td>
+                                            <td>@Html.ActionLink(item.IOPending.ToString(), "formdataquery", "adboard", new { screen = "examcentrecount", query =  "IOPENDING", esub = ViewBag.esub, eccode = item.ExamCentreCode }, new { @class = "at-io-pending" })</td>
+                                            <td>@Html.ActionLink(item.ScanPending.ToString(), "formdataquery", "adboard", new { screen = "examcentrecount", query =  "SCANPENDING", esub = ViewBag.esub, eccode = item.ExamCentreCode }, new { @class = "at-scan-pending" })</td>
+                                            <td>@Html.ActionLink("View", "formdatadetail", "adboard", new { eccode = item.ExamCentreCode, esub = ViewBag.esub }, new { @class = "btn btn-sm btn-info" })</td>
+                                        </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+@section scripts {
+    <script src="~/Scripts/at_admin_common.js"></script>
+}
+

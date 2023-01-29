@@ -1,0 +1,36 @@
+﻿@using WebUI.Utility 
+<div class="d-flex justify-content-between">
+    <nav class="d-none d-md-block w-100" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            @foreach (var item in Sitemap.Routes)
+            {
+                if (item.CurrentPage)
+                {
+                    <li class="breadcrumb-item my-1 active" aria-current="page"><span class="btn btn-sm btn-outline-info rounded-5 px-3">@item.Name</span></li>
+                }
+                else
+                {
+                    <li class="breadcrumb-item my-1">@Html.ActionLink(item.Name, item.Action, item.Controller, item.RouteValue, new { @class = "btn btn-sm btn-info rounded-5 px-3" })</li>
+                }
+            }
+            @{
+                var backRoute = Sitemap.Routes.Where(x => !x.CurrentPage).Last();
+                if (backRoute != null)
+                {
+                    <li class="ms-auto my-1">
+                        @Html.ActionLink("Back", backRoute.Action, backRoute.Controller, backRoute.RouteValue, new { @class = "btn btn-dark btn-sm rounded-5 px-3" })
+                    </li>
+                }
+            }
+        </ol>
+    </nav>
+    @*@{
+        var backRoute = Sitemap.Routes.Where(x => !x.CurrentPage).Last();
+        if (backRoute != null)
+        {
+        <div class="ms-auto">
+            @Html.ActionLink("Back", backRoute.Action, backRoute.Controller, backRoute.RouteValue, new { @class = "btn btn-dark btn-sm rounded-5 px-3" })
+        </div>
+        }
+    }*@
+</div>

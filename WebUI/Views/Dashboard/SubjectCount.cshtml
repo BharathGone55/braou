@@ -1,0 +1,86 @@
+﻿@model List<WebUI.Models.At.SubjectCount>
+
+@Html.Partial("_breadcrumb")
+@if (Model.Count() <= 0)
+{
+    @Html.Partial("_nodatafound")
+}
+else
+{
+<div class="row mb-1">
+    <div class="col-auto ms-auto">
+        <div class="dropdown">
+            <button class="btn btn-warning btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Download Sticker
+            </button>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("Preprinted", "preprintedsticker", "print", new { esub = ViewBag.esub }, new { @class = "dropdown-item", target = "_blank" })</li>
+                <li>@Html.ActionLink("Latecomer", "latecomersticker", "print", new { esub = ViewBag.esub }, new { @class = "dropdown-item", target = "_blank" })</li>
+                <li>@Html.ActionLink("Buffer", "buffersticker", "print", new { esub = ViewBag.esub }, new { @class = "dropdown-item", target = "_blank" })</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-auto">
+        <div class="dropdown">
+            <button class="btn btn-warning btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Download DForm
+            </button>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("Preprinted", "preprinteddform", "print", new { esub = ViewBag.esub }, new { @class = "dropdown-item", target = "_blank" })</li>
+                <li>@Html.ActionLink("Latecomer", "latecomerdform", "print", new { esub = ViewBag.esub }, new { @class = "dropdown-item", target = "_blank" })</li>
+                <li>@Html.ActionLink("Buffer", "bufferdform", "print", new { esub = ViewBag.esub }, new { @class = "dropdown-item", target = "_blank" })</li>
+            </ul>
+        </div>
+    </div>
+    @if (ViewBag.havecoverslip) { 
+        <div class="col-auto">
+            @Html.ActionLink("Download Cover Slip", "atcoverslip", "print", new { esub = ViewBag.esub }, new { @class = "btn btn-sm btn-warning", target = "_blank" })
+        </div>
+    }
+</div>
+    <div class="row">
+        <div class="col">
+            <table class="table table-sm table-responsive text-center text-secondary small">
+                <thead class="table-light">
+                    <tr>
+                        <th>#</th>
+                        <th class="text-start">Course</th>
+                        <th>Year Semester</th>
+                        <th>Paper Code</th>
+                        <th class="text-start">Paper Name</th>
+                        <th>Total</th>
+                        <th>Present</th>
+                        <th>Absent</th>
+                        <th>Malpractice</th>
+                        <th>Buffer</th>
+                        <th>Pending</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int i = 0;
+                        foreach (var item in Model)
+                        {
+                            i++;
+                            <tr>
+                                <th scope="row">@i</th>
+                                <td class="text-start">@item.Subject</td>
+                                <td>@item.YearSemester</td>
+                                <td>@item.PaperCode</td>
+                                <td class="text-start">@item.PaperName</td>
+                                <td>@item.Total</td>
+                                <td>@item.Present</td>
+                                <td>@item.Absent</td>
+                                <td>@item.Malpractice</td>
+                                <td>@item.Buffer</td>
+                                <td>@item.Pending</td>
+                                <td>@Html.ActionLink("View", "index", "atedit", new { esub = item.ToString() }, new { @class = "btn btn-sm btn-info" })</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+

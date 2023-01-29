@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report DataSourceName="ds_at_dform" Width="7.8in" Name="at_dform" xmlns="http://schemas.telerik.com/reporting/2019/2.0">
+  <Style TextAlign="Center" VerticalAlign="Middle">
+    <Font Name="Verdana" />
+  </Style>
+  <DataSources>
+    <SqlDataSource QueryDesignerState="null" ParameterValues="{&quot;@eid&quot;:&quot;1&quot;,&quot;@examcentrecode&quot;:&quot;001&quot;,&quot;@examdate&quot;:&quot;12-08-2022&quot;,&quot;@examtime&quot;:&quot;2 PM TO 4 PM&quot;,&quot;@islatecomer&quot;:&quot;FALSE&quot;,&quot;@isbuffer&quot;:&quot;FALSE&quot;}" ConnectionString="BRAOUWeb" SelectCommand="at.FormData_DForm" SelectCommandType="StoredProcedure" Name="ds_at_dform">
+      <Parameters>
+        <SqlDataSourceParameter DbType="Int32" Name="@eid">
+          <Value>
+            <String>= Parameters.EId.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+        <SqlDataSourceParameter DbType="AnsiString" Name="@examcentrecode">
+          <Value>
+            <String>= Parameters.ExamCentreCode.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+        <SqlDataSourceParameter DbType="AnsiString" Name="@examdate">
+          <Value>
+            <String>= Parameters.ExamDate.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+        <SqlDataSourceParameter DbType="AnsiString" Name="@examtime">
+          <Value>
+            <String>= Parameters.ExamTime.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+        <SqlDataSourceParameter DbType="Boolean" Name="@islatecomer">
+          <Value>
+            <String>= Parameters.IsLateComer.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+        <SqlDataSourceParameter DbType="Boolean" Name="@isbuffer">
+          <Value>
+            <String>= Parameters.IsBuffer.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+      </Parameters>
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <PageHeaderSection Height="0.052in" Name="pageHeaderSection1">
+      <Style VerticalAlign="Middle" />
+    </PageHeaderSection>
+    <DetailSection Height="0.3in" Name="detailSection1">
+      <Items>
+        <Shape Width="0.3in" Height="0.3in" Left="5.5in" Top="0in" Stretch="False" Name="shape3">
+          <Style Color="Silver" VerticalAlign="Middle">
+            <Font Size="8pt" />
+            <BorderStyle Default="Solid" Right="None" />
+            <BorderColor Default="Silver" />
+            <BorderWidth Default="0.5pt" />
+            <Padding Left="5pt" Right="5pt" />
+          </Style>
+          <ShapeType>
+            <EllipseShape />
+          </ShapeType>
+        </Shape>
+        <TextBox Width="1in" Height="0.3in" Left="1.9in" Top="0in" Value="= Fields.StickerNo" Name="textBox1">
+          <Style VerticalAlign="Middle">
+            <Font Size="8pt" />
+            <BorderStyle Default="Solid" />
+            <BorderColor Default="Silver" />
+            <BorderWidth Default="0.5pt" />
+            <Padding Left="5pt" Right="5pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="0.5in" Height="0.3in" Left="0.1in" Top="0in" Value="= Fields.PageRecSlno" Name="textBox3">
+          <Style VerticalAlign="Middle">
+            <Font Size="8pt" />
+            <BorderStyle Default="Solid" />
+            <BorderColor Default="Silver" />
+            <BorderWidth Default="0.5pt" />
+            <Padding Left="5pt" Right="5pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="1.3in" Height="0.3in" Left="0.6in" Top="0in" Value="= Fields.IHTNO" Name="textBox15">
+          <Style VerticalAlign="Middle">
+            <Font Size="8pt" />
+            <BorderStyle Default="Solid" />
+            <BorderColor Default="Silver" />
+            <BorderWidth Default="0.5pt" />
+            <Padding Left="5pt" Right="5pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="1.2in" Height="0.3in" Left="2.9in" Top="0in" Value="" Name="textBox2">
+          <Style VerticalAlign="Middle">
+            <Font Size="8pt" />
+            <BorderStyle Default="Solid" />
+            <BorderColor Default="Silver" />
+            <BorderWidth Default="0.5pt" />
+            <Padding Left="5pt" Right="5pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="1.4in" Height="0.3in" Left="4.1in" Top="0in" Value="" Name="textBox16">
+          <Style VerticalAlign="Middle">
+            <Font Size="8pt" />
+            <BorderStyle Default="Solid" />
+            <BorderColor Default="Silver" />
+            <BorderWidth Default="0.5pt" />
+            <Padding Left="5pt" Right="5pt" />
+          </Style>
+        </TextBox>
+        <TextBox Width="0.5in" Height="0.3in" Left="6.8in" Top="0in" Value="Absent" Name="textBox18">
+          <Style VerticalAlign="Middle">
+            <Font Size="8pt" />
+            <BorderStyle Default="Solid" Left="None" />
+            <BorderColor Default="Silver" />
+            <BorderWidth Default="0.5pt" />
+            <Padding Left="0pt" Right="5pt" />
+          </Style>
+        </TextBox>
+        <Shape Width="0.4in" Height="0.3in" Left="7.3in" Top="0in" Stretch="True" Name="shape1">
+          <Style BackgroundColor="Black">
+            <Padding Left="0.06in" Right="0.06in" Top="0.1in" Bottom="0.1in" />
+          </Style>
+          <ShapeType>
+            <PolygonShape VertexCount="4" Rounding="0" StartAngle="45" />
+          </ShapeType>
+        </Shape>
+        <Shape Width="0.3in" Height="0.3in" Left="6.5in" Top="0in" Stretch="False" Name="shape2">
+          <Style Color="Silver" VerticalAlign="Middle">
+            <Font Size="8pt" />
+            <BorderStyle Default="Solid" Right="None" />
+            <BorderColor Default="Silver" />
+            <BorderWidth Default="0.5pt" />
+            <Padding Left="5pt" Right="5pt" />
+          </Style>
+          <ShapeType>
+            <EllipseShape />
+          </ShapeType>
+        </Shape>
+        <TextBox Width="0.7in" Height="0.3in" Left="5.8in" Top="0in" Value="Malpractice" Name="textBox17">
+          <Style VerticalAlign="Middle">
+            <Font Size="8pt" />
+            <BorderStyle Default="Solid" Left="None" />
+            <BorderColor Default="Silver" />
+            <BorderWidth Default="0.5pt" />
+            <Padding Left="0pt" Right="5pt" />
+          </Style>
+        </TextBox>
+      </Items>
+    </DetailSection>
+    <PageFooterSection Height="0.4in" Name="pageFooterSection1">
+      <Items>
+        <Shape Width="0.2in" Height="0.2in" Left="1in" Top="0.048in" Stretch="False" Name="shape6">
+          <Style BackgroundColor="Black">
+            <Padding Left="0in" Right="0in" Top="0in" Bottom="0in" />
+          </Style>
+          <ShapeType>
+            <PolygonShape VertexCount="4" Rounding="0" StartAngle="45" />
+          </ShapeType>
+        </Shape>
+        <Shape Width="0.2in" Height="0.2in" Left="7.4in" Top="0.048in" Stretch="False" Name="shape7">
+          <Style BackgroundColor="Black">
+            <Padding Left="0in" Right="0in" Top="0in" Bottom="0in" />
+          </Style>
+          <ShapeType>
+            <PolygonShape VertexCount="4" Rounding="0" StartAngle="45" />
+          </ShapeType>
+        </Shape>
+        <Shape Width="0.3in" Height="0.2in" Left="6.5in" Top="0.048in" Stretch="False" Name="shape8">
+          <Style BackgroundColor="Black">
+            <Padding Left="0in" Right="0in" Top="0in" Bottom="0in" />
+          </Style>
+          <ShapeType>
+            <PolygonShape VertexCount="4" Rounding="0" StartAngle="45" />
+          </ShapeType>
+        </Shape>
+        <Shape Width="0.3in" Height="0.2in" Left="5.5in" Top="0.048in" Stretch="False" Name="shape9">
+          <Style BackgroundColor="Black">
+            <Padding Left="0in" Right="0in" Top="0in" Bottom="0in" />
+          </Style>
+          <ShapeType>
+            <PolygonShape VertexCount="4" Rounding="0" StartAngle="45" />
+          </ShapeType>
+        </Shape>
+        <TextBox Width="1.5in" Height="0.2in" Left="1.3in" Top="0.048in" Value="= &quot;Page &quot;+ PageNumber + &quot; of  &quot; + PageCount" Name="textBox19">
+          <Style TextAlign="Left" VerticalAlign="Middle">
+            <Font Size="8pt" />
+          </Style>
+        </TextBox>
+      </Items>
+    </PageFooterSection>
+  </Items>
+  <PageSettings PaperKind="A4" Landscape="False">
+    <Margins>
+      <MarginsU Left="0.1in" Right="0.1in" Top="0.1in" Bottom="0.1in" />
+    </Margins>
+  </PageSettings>
+  <StyleSheet>
+    <StyleRule>
+      <Style>
+        <Padding Left="2pt" Right="2pt" />
+      </Style>
+      <Selectors>
+        <TypeSelector Type="TextItemBase" />
+        <TypeSelector Type="HtmlTextBox" />
+      </Selectors>
+    </StyleRule>
+    <StyleRule>
+      <Style Color="Black">
+        <Font Name="Tahoma" Size="9pt" />
+        <BorderStyle Default="Solid" />
+        <BorderColor Default="Black" />
+        <BorderWidth Default="1px" />
+      </Style>
+      <Selectors>
+        <StyleSelector Type="Table" StyleName="Normal.TableNormal" />
+      </Selectors>
+    </StyleRule>
+    <StyleRule>
+      <Style VerticalAlign="Middle">
+        <Font Name="Tahoma" Size="10pt" />
+        <BorderStyle Default="Solid" />
+        <BorderColor Default="Black" />
+        <BorderWidth Default="1px" />
+      </Style>
+      <Selectors>
+        <DescendantSelector>
+          <Selectors>
+            <TypeSelector Type="Table" />
+            <StyleSelector Type="ReportItem" StyleName="Normal.TableHeader" />
+          </Selectors>
+        </DescendantSelector>
+      </Selectors>
+    </StyleRule>
+    <StyleRule>
+      <Style>
+        <Font Name="Tahoma" Size="9pt" />
+        <BorderStyle Default="Solid" />
+        <BorderColor Default="Black" />
+        <BorderWidth Default="1px" />
+      </Style>
+      <Selectors>
+        <DescendantSelector>
+          <Selectors>
+            <TypeSelector Type="Table" />
+            <StyleSelector Type="ReportItem" StyleName="Normal.TableBody" />
+          </Selectors>
+        </DescendantSelector>
+      </Selectors>
+    </StyleRule>
+  </StyleSheet>
+  <Sortings>
+    <Sorting Expression="= Fields.StartTime" Direction="Asc" />
+    <Sorting Expression="= Fields.YearSemester" Direction="Asc" />
+    <Sorting Expression="= Fields.Subject" Direction="Asc" />
+    <Sorting Expression="= Fields.PaperCode" Direction="Asc" />
+    <Sorting Expression="= Fields.PaperName" Direction="Asc" />
+    <Sorting Expression="= Fields.PageNo" Direction="Asc" />
+    <Sorting Expression="= Fields.PageRecSlno" Direction="Asc" />
+  </Sortings>
+  <Groups>
+    <Group Name="group">
+      <GroupHeader>
+        <GroupHeaderSection Height="2.159in" Name="groupHeaderSection">
+          <Items>
+            <TextBox Width="3.8in" Height="0.25in" Left="1.4in" Top="0in" Value="Dr. B. R. AMBEDKAR OPEN UNIVERSITY, HYDERABAD" Name="textBox4">
+              <Style VerticalAlign="Middle">
+                <Font Size="9pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <TextBox Width="2.1in" Height="0.25in" Left="2.2in" Top="0.2in" Value="EXAMINATION BRANCH" Name="textBox5">
+              <Style VerticalAlign="Middle">
+                <Font Size="9pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <TextBox Width="3.2in" Height="0.25in" Left="1.7in" Top="0.4in" Value="D-FORM CUM ROOM WISE STATEMENT" Name="textBox6">
+              <Style VerticalAlign="Middle">
+                <Font Size="9pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <TextBox Width="3.2in" Height="0.25in" Left="1.7in" Top="0.6in" Value="= &quot;EXAMINATION &quot; + ToUpper(Parameters.ExamMonthYear.Value)" Name="textBox7">
+              <Style VerticalAlign="Middle">
+                <Font Size="9pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <Barcode Width="1.5in" Height="0.55in" Left="5.5in" Top="0.1in" Value="= Fields.PageNo" Module="1pt" Stretch="True" Name="barcode1">
+              <Style>
+                <Font Size="10pt" />
+              </Style>
+              <Encoder>
+                <Code128CEncoder ShowText="False" />
+              </Encoder>
+            </Barcode>
+            <TextBox Width="1.5in" Height="0.25in" Left="5.5in" Top="0.6in" Value="= Fields.PageNo" Name="textBox8">
+              <Style VerticalAlign="Middle">
+                <Font Size="9pt" Bold="True" />
+              </Style>
+            </TextBox>
+            <TextBox Width="1.8in" Height="0.4in" Left="5.5in" Top="1.759in" Value="Record Attendence for Absent and Malpractice Only" Name="textBox20">
+              <Style TextAlign="Center" VerticalAlign="Middle">
+                <Font Size="8pt" />
+                <BorderStyle Default="Solid" />
+                <BorderColor Default="Silver" />
+                <BorderWidth Default="0.5pt" />
+                <Padding Left="5pt" Right="5pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="1.406in" Height="0.4in" Left="4.094in" Top="1.759in" Value="Signature" Name="textBox21">
+              <Style TextAlign="Center" VerticalAlign="Middle">
+                <Font Size="8pt" />
+                <BorderStyle Default="Solid" />
+                <BorderColor Default="Silver" />
+                <BorderWidth Default="0.5pt" />
+                <Padding Left="5pt" Right="5pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="1.2in" Height="0.4in" Left="2.896in" Top="1.759in" Value="Answer Book No." Name="textBox22">
+              <Style TextAlign="Center" VerticalAlign="Middle">
+                <Font Size="8pt" />
+                <BorderStyle Default="Solid" />
+                <BorderColor Default="Silver" />
+                <BorderWidth Default="0.5pt" />
+                <Padding Left="5pt" Right="5pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="1.3in" Height="0.4in" Left="0.6in" Top="1.759in" Value="Hall Ticket Number" Name="textBox23">
+              <Style TextAlign="Center" VerticalAlign="Middle">
+                <Font Size="8pt" />
+                <BorderStyle Default="Solid" />
+                <BorderColor Default="Silver" />
+                <BorderWidth Default="0.5pt" />
+                <Padding Left="5pt" Right="5pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="0.5in" Height="0.4in" Left="0.1in" Top="1.759in" Value="S.No." Name="textBox24">
+              <Style TextAlign="Center" VerticalAlign="Middle">
+                <Font Size="8pt" />
+                <BorderStyle Default="Solid" />
+                <BorderColor Default="Silver" />
+                <BorderWidth Default="0.5pt" />
+                <Padding Left="5pt" Right="5pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="1.004in" Height="0.4in" Left="1.896in" Top="1.759in" Value="Sticker Sl.No." Name="textBox25">
+              <Style TextAlign="Center" VerticalAlign="Middle">
+                <Font Size="8pt" />
+                <BorderStyle Default="Solid" />
+                <BorderColor Default="Silver" />
+                <BorderWidth Default="0.5pt" />
+                <Padding Left="5pt" Right="5pt" />
+              </Style>
+            </TextBox>
+            <Shape Width="0.2in" Height="0.2in" Left="7.4in" Top="0.448in" Stretch="False" Name="shape4">
+              <Style BackgroundColor="Black">
+                <Padding Left="0in" Right="0in" Top="0in" Bottom="0in" />
+              </Style>
+              <ShapeType>
+                <PolygonShape VertexCount="4" Rounding="0" StartAngle="45" />
+              </ShapeType>
+            </Shape>
+            <Shape Width="0.2in" Height="0.2in" Left="1in" Top="0.448in" Stretch="False" Name="shape5">
+              <Style BackgroundColor="Black">
+                <Padding Left="0in" Right="0in" Top="0in" Bottom="0in" />
+              </Style>
+              <ShapeType>
+                <PolygonShape VertexCount="4" Rounding="0" StartAngle="45" />
+              </ShapeType>
+            </Shape>
+            <TextBox Width="5.8in" Height="0.225in" Left="1.496in" Top="1.551in" Value="= Fields.ExamDate + &quot; : &quot; + Fields.ExamTime" Name="textBox36">
+              <Style TextAlign="Left" VerticalAlign="Middle">
+                <Font Size="8pt" />
+                <BorderStyle Default="Solid" Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                <BorderColor Default="Silver" Top="Silver" Bottom="Silver" Left="Silver" Right="Silver" />
+                <BorderWidth Default="0.5pt" Top="0.5pt" Bottom="0.5pt" Left="0.5pt" Right="0.5pt" />
+                <Padding Left="5pt" Right="5pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="5.8in" Height="0.225in" Left="1.496in" Top="0.876in" Value="= Parameters.ExamCentreCode.Value + &quot; - &quot; + Parameters.ExamCentreName.Value" Name="textBox35">
+              <Style TextAlign="Left" VerticalAlign="Middle">
+                <Font Size="8pt" Bold="False" />
+                <BorderStyle Default="Solid" Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                <BorderColor Default="Silver" Top="Silver" Bottom="Silver" Left="Silver" Right="Silver" />
+                <BorderWidth Default="0.5pt" Top="0.5pt" Bottom="0.5pt" Left="0.5pt" Right="0.5pt" />
+                <Padding Left="5pt" Right="5pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="4.2in" Height="0.225in" Left="1.496in" Top="1.101in" Value="= Fields.Subject" Name="textBox34">
+              <Style Visible="True" TextAlign="Left" VerticalAlign="Middle">
+                <Font Size="8pt" />
+                <BorderStyle Default="Solid" Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                <BorderColor Default="Silver" Top="Silver" Bottom="Silver" Left="Silver" Right="Silver" />
+                <BorderWidth Default="0.5pt" Top="0.5pt" Bottom="0.5pt" Left="0.5pt" Right="0.5pt" />
+                <Padding Left="5pt" Right="5pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="1.396in" Height="0.225in" Left="0.1in" Top="0.876in" Value="EXAMCENTRE:" Name="textBox33">
+              <Style TextAlign="Left" VerticalAlign="Middle">
+                <Font Size="8pt" Bold="False" />
+                <BorderStyle Default="Solid" Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                <BorderColor Default="Silver" Top="Silver" Bottom="Silver" Left="Silver" Right="Silver" />
+                <BorderWidth Default="0.5pt" Top="0.5pt" Bottom="0.5pt" Left="0.5pt" Right="0.5pt" />
+                <Padding Left="5pt" Right="2pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="1.396in" Height="0.225in" Left="0.1in" Top="1.101in" Value="COURSE:" Name="textBox13">
+              <Style TextAlign="Left" VerticalAlign="Middle">
+                <Font Size="8pt" Bold="False" />
+                <BorderStyle Default="Solid" Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                <BorderColor Default="Silver" Top="Silver" Bottom="Silver" Left="Silver" Right="Silver" />
+                <BorderWidth Default="0.5pt" Top="0.5pt" Bottom="0.5pt" Left="0.5pt" Right="0.5pt" />
+                <Padding Left="5pt" Right="2pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="1.396in" Height="0.225in" Left="0.1in" Top="1.551in" Value="EXAM DATE &amp; TIME:" Name="textBox12">
+              <Style TextAlign="Left" VerticalAlign="Middle">
+                <Font Size="8pt" Bold="False" />
+                <BorderStyle Default="Solid" Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                <BorderColor Default="Silver" Top="Silver" Bottom="Silver" Left="Silver" Right="Silver" />
+                <BorderWidth Default="0.5pt" Top="0.5pt" Bottom="0.5pt" Left="0.5pt" Right="0.5pt" />
+                <Padding Left="5pt" Right="2pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="1.396in" Height="0.225in" Left="0.1in" Top="1.326in" Value="PAPER CODE &amp; NAME:" Name="textBox10">
+              <Style TextAlign="Left" VerticalAlign="Middle">
+                <Font Size="8pt" Bold="False" />
+                <BorderStyle Default="Solid" Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                <BorderColor Default="Silver" Top="Silver" Bottom="Silver" Left="Silver" Right="Silver" />
+                <BorderWidth Default="0.5pt" Top="0.5pt" Bottom="0.5pt" Left="0.5pt" Right="0.5pt" />
+                <Padding Left="5pt" Right="2pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="5.8in" Height="0.225in" Left="1.496in" Top="1.326in" Value="= Fields.PaperCode + &quot; - &quot; + Fields.PaperName" Name="textBox11">
+              <Style TextAlign="Left" VerticalAlign="Middle">
+                <Font Size="8pt" />
+                <BorderStyle Default="Solid" Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                <BorderColor Default="Silver" Top="Silver" Bottom="Silver" Left="Silver" Right="Silver" />
+                <BorderWidth Default="0.5pt" Top="0.5pt" Bottom="0.5pt" Left="0.5pt" Right="0.5pt" />
+                <Padding Left="5pt" Right="5pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="0.5in" Height="0.225in" Left="6.796in" Top="1.101in" Value="= ToUpper(Fields.YearSemester)" Name="textBox9">
+              <Style Visible="True" TextAlign="Left" VerticalAlign="Middle">
+                <Font Size="8pt" />
+                <BorderStyle Default="Solid" Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                <BorderColor Default="Silver" Top="Silver" Bottom="Silver" Left="Silver" Right="Silver" />
+                <BorderWidth Default="0.5pt" Top="0.5pt" Bottom="0.5pt" Left="0.5pt" Right="0.5pt" />
+                <Padding Left="5pt" Right="5pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="1.1in" Height="0.225in" Left="5.696in" Top="1.101in" Value="= ToUpper(Fields.Pattern)+&quot;:&quot;" Name="textBox14">
+              <Style Visible="True" TextAlign="Left" VerticalAlign="Middle">
+                <Font Size="8pt" Bold="False" />
+                <BorderStyle Default="Solid" Top="Solid" Bottom="Solid" Left="Solid" Right="Solid" />
+                <BorderColor Default="Silver" Top="Silver" Bottom="Silver" Left="Silver" Right="Silver" />
+                <BorderWidth Default="0.5pt" Top="0.5pt" Bottom="0.5pt" Left="0.5pt" Right="0.5pt" />
+                <Padding Left="5pt" Right="5pt" />
+              </Style>
+            </TextBox>
+          </Items>
+        </GroupHeaderSection>
+      </GroupHeader>
+      <GroupFooter>
+        <GroupFooterSection PrintOnEveryPage="True" PageBreak="After" Height="1.3in" Name="groupFooterSection">
+          <Items>
+            <TextBox Width="3.4in" Height="0.2in" Left="0.1in" Top="0.1in" Value="= &quot;  Total no. of student in this sheet: &quot; + Count(Fields.ihtno)" Name="textBox26">
+              <Style TextAlign="Left" VerticalAlign="Middle">
+                <Font Size="8pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="3.4in" Height="0.2in" Left="0.1in" Top="0.3in" Value="= &quot;  Total no. of Absent student in this sheet: &quot; " Name="textBox27">
+              <Style TextAlign="Left" VerticalAlign="Middle">
+                <Font Size="8pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="3.4in" Height="0.2in" Left="3.9in" Top="0.1in" Value="= &quot;  Total no. of Present student in this sheet: &quot;" Name="textBox28">
+              <Style TextAlign="Left" VerticalAlign="Middle">
+                <Font Size="8pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="3.4in" Height="0.2in" Left="3.9in" Top="0.3in" Value="= &quot;  Total no. of Malpractice cases in this sheet: &quot;" Name="textBox29">
+              <Style TextAlign="Left" VerticalAlign="Middle">
+                <Font Size="8pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="7.2in" Height="0.2in" Left="0.1in" Top="0.5in" Value="= &quot;  Please darken the circle Absent or Malpractice again Hall ticket number, if any.&quot; " Name="textBox30">
+              <Style TextAlign="Left" VerticalAlign="Middle">
+                <Font Size="8pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="3.4in" Height="0.2in" Left="0.1in" Top="1.1in" Value="= &quot;  Signature of Invigilator&quot; " Name="textBox31">
+              <Style TextAlign="Left" VerticalAlign="Middle">
+                <Font Size="8pt" />
+              </Style>
+            </TextBox>
+            <TextBox Width="3.4in" Height="0.2in" Left="3.9in" Top="1.1in" Value="= &quot;  Signature of Exam Superitendent with seal&quot; " Name="textBox32">
+              <Style TextAlign="Right" VerticalAlign="Middle">
+                <Font Size="8pt" />
+              </Style>
+            </TextBox>
+          </Items>
+        </GroupFooterSection>
+      </GroupFooter>
+      <Groupings>
+        <Grouping Expression="= Fields.StartTime" />
+        <Grouping Expression="= Fields.ExamDate" />
+        <Grouping Expression="= Fields.ExamTime" />
+        <Grouping Expression="= Fields.YearSemester" />
+        <Grouping Expression="= Fields.Subject" />
+        <Grouping Expression="= Fields.PaperCode" />
+        <Grouping Expression="= Fields.PaperName" />
+        <Grouping Expression="= Fields.PageNo" />
+      </Groupings>
+      <Sortings>
+        <Sorting Expression="= Fields.StartTime" Direction="Asc" />
+        <Sorting Expression="= Fields.ExamDate" Direction="Asc" />
+        <Sorting Expression="= Fields.ExamTime" Direction="Asc" />
+        <Sorting Expression="= Fields.YearSemester" Direction="Asc" />
+        <Sorting Expression="= Fields.Subject" Direction="Asc" />
+        <Sorting Expression="= Fields.PaperCode" Direction="Asc" />
+        <Sorting Expression="= Fields.PaperName" Direction="Asc" />
+        <Sorting Expression="= Fields.PageNo" Direction="Asc" />
+        <Sorting Expression="= Fields.PageRecSlno" Direction="Asc" />
+      </Sortings>
+    </Group>
+  </Groups>
+  <ReportParameters>
+    <ReportParameter Name="EId" Type="Integer" />
+    <ReportParameter Name="ExamMonthYear" />
+    <ReportParameter Name="ExamCentreCode" />
+    <ReportParameter Name="ExamCentreName" />
+    <ReportParameter Name="ExamDate" />
+    <ReportParameter Name="ExamTime" />
+    <ReportParameter Name="IsLateComer" Type="Boolean" />
+    <ReportParameter Name="IsBuffer" Type="Boolean" />
+  </ReportParameters>
+</Report>

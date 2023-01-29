@@ -1,0 +1,36 @@
+﻿
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                @if (User.IsInRole("AtUser"))
+                {
+                    <h5 class="card-title">Attendance</h5>
+                    @Html.ActionLink("Go to Dashboard", "eventcount", "dashboard", null, new { @class = "card-link stretched-link" })
+                }
+
+                @if (User.IsInRole("AtAdmin"))
+                {
+                    <h5 class="card-title">Attendance</h5>
+                    @Html.ActionLink("Go to Dashboard", "eventcount", "adboard", null, new { @class = "card-link stretched-link" })
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Practical Marks</h5>
+                <p class="card-text">Coming soon.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Internal Assessments</h5>
+                <p class="card-text">Coming soon.</p>
+            </div>
+        </div>
+    </div>
+</div>

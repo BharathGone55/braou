@@ -1,0 +1,80 @@
+﻿@model List<WebUI.Models.Shared.FormData>
+
+@Html.Partial("_breadcrumb")
+@if (Model.Count() <= 0)
+{
+    @Html.Partial("_nodatafound")
+}
+else
+{
+    <div class="row">
+        <div class="col">
+            <table class="table table-sm table-responsive text-center text-secondary small">
+                <thead class="table-light">
+                    <tr>
+                        <th>#</th>
+                        <th>Hall Ticket Number</th>
+                        <th class="text-start">Name</th>
+                        <th>StickerNumber</th>
+                        <th>IsBuffer</th>
+                        <th>IsSubmit</th>
+                        <th>Status</th>
+                        <th>Scan Status</th>
+                        <th>DForm</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int i = 0;
+                        foreach (var item in Model)
+                        {
+                            i++;
+                                        <tr class="at-row" data-is-buffer="@item.IsBuffer" data-is-locked="@item.IsLocked" data-at-status="@item.AtStatus" data-scan-status="@item.ScanStatus" data-dform="@item.DForm">
+                                            <th scope="row">@i</th>
+                                            <td>@item.IHTNO</td>
+                                            <td class="text-start">@item.SName</td>
+                                            <td>@item.StickerNo</td>
+                                            <td><span class="at-is-buffer"></span></td>
+                                            <td><span class="at-is-locked"></span></td>
+                                            <td>
+                                                <span class='at-status d-inline-flex px-2 py-1 bg-opacity-10 border border-opacity-10 rounded-2'></span>
+                                            </td>
+                                            <td>
+                                                <span class='at-scan-status d-inline-flex px-2 py-1 bg-opacity-10 border border-opacity-10 rounded-2'>@item.ScanStatus</span>
+                                            </td>
+                                            <td><a class='at-dform btn btn-sm' href="@item.DForm">View</a></td>
+                                        </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+@section scripts {
+    <script type="text/javascript">
+        const atStatusStyle = { P: 'text-success bg-success border-success', A: 'text-danger bg-danger border-dange', MP: 'text-warning bg-warning border-warning' }
+        const atStatusText = { P: 'Present', A: 'Absent', MP: 'Malpractice' }
+
+        const atScanStatusStyle = { 'SCAN COMPLETED': 'text-success bg-success border-success', 'SCAN PENDING': 'text-danger bg-danger border-danger', 'IO PENDING': 'text-warning bg-warning border-warning', 'DAMAGED': 'text-info bg-info border-info', 'NONE':'d-none' }
+
+
+    $(document).ready(function () {
+        $('.at-row').each(function () {
+            let tr = $(this);
+
+            let atStatus = tr.find('span.at-status')
+            atStatus.text(atStatusText[tr.data('at-status') || 'P']);
+            atStatus.addClass(atStatusStyle[tr.data('at-status') || 'P']);
+
+            tr.find('span.at-is-buffer').text(tr.data('is-buffer') == 'True' ? 'Yes' : 'No')
+            tr.find('span.at-is-locked').text(tr.data('is-locked') == 'True' ? 'Yes' : 'No')
+            tr.find('span.at-scan-status').addClass(atScanStatusStyle[tr.data('scan-status') || 'NONE']);
+            tr.find('a.at-dform').addClass(tr.data('dform') ? "btn-info" : "d-none");
+
+        });
+    });
+    </script>
+}
+
+
